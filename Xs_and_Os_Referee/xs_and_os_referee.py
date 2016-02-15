@@ -4,62 +4,106 @@ def checkio(list_x):
 	X_list = []
 	O_list = []
 	D_list = []
+	def make_a_list(list_n):
+		for list_1 in list_n:
+			element_x = []
+			element_o = []
+			element_dot = []
+			count = 0
+			for element in list_1:
+				if element == "X":
+					element_x.append(count)
+				elif element == "O":
+					element_o.append(count)
+				elif element == ".":
+					element_dot.append(count)
+				count +=1
+			X_list.append(element_x)
+			O_list.append(element_o)
+			D_list.append(element_dot)
 
-	list_of_vin = [[[0,1,2]],[[0],[0],[0]],[[1],[1],[1]],[[2],[2],[2]],[[0],[1],[2]],[[2],[1],[0]]]
+	make_a_list(list_x)			
 
-	for list_1 in list_x:
-		element_x = []
-		element_o = []
-		element_dot = []
-		count = 0
-		for element in list_1:
-			if element == "X":
-				element_x.append(count)
-			elif element == "O":
-				element_o.append(count)
-			elif element == ".":
-				element_dot.append(count)
-			count +=1
-		X_list.append(element_x)
-		O_list.append(element_o)
-		D_list.append(element_dot)
+	#print "X got this -> ",X_list
+	#print "O got this -> ",O_list
+	#print "D got this -> ",D_list
 
-	count_1 = 0
-	for ch_l in D_list:	
-		if len(ch_l) == 0:
-			count_1 +=1
-	
-	if count_1 == 3:
+	#check D_
+	def check_d(list_d):
+		count_d = 0
+		for ch_l in list_d:	
+			if len(ch_l) == 0:
+				count_d +=1
+		if count_d == 3:
+			return "D"
+	if check_d(D_list) == "D":
 		return "D"
-	
-	X_zero_count = 0
-	X_one_count = 0
-	X_two_count = 0
 
-	for l in X_list:
-		if len(l) == 1:
-			if l[0] == 0:
-				X_zero_count += 1
-			elif l[0] == 1:
-				X_one_count += 1
-			elif l[0] == 2:
-				X_two_count += 1	
-		elif len(l) >= 2:
-			if l[1] == 1:
-				X_one_count +=1
+	#check X list_win?
+	def check_x(list_x):
+			#check in thw horizontal
+		if [0,1,2] in list_x:
+			return "X"
+			#check in the vertical	
+		zero_count = 0
+		one_count = 0
+		two_count = 0
+		for num_x in list_x:
+			if 0 in num_x:
+				zero_count += 1
+		if zero_count == 3:
+			return "X"
+		for num_x in list_x:
+			if 1 in num_x:
+				one_count += 1
+		if one_count == 3:
+			return "X"
+		for num_x in list_x:
+			if 2 in num_x:
+				two_count += 1
+		if two_count == 3:
+			return "X"
+			#check in the diagonal
+		if (0 in list_x[0])and (1 in list_x[1]) and (2 in list_x[2]):
+			return "X"
+		if (2 in list_x[0]) and (1 in list_x[1]) and (0 in list_x[2]):
+			return "X"
+	if check_x(X_list) == "X":
+		return "X"
 
-	if X_zero_count == 3:
-		return "X"
-	elif X_one_count == 3:
-		return "X"
-	elif X_two_count == 3:
-		return "X"
-
-	print X_list
-	print O_list
-	print D_list
+	#check O list_win?
+	def check_o(list_o):
+		#check in thw horizontal
+		if [0,1,2] in list_o:
+			return "O"
+			#check in the vertical	
+		zero_count_o = 0
+		one_count_o = 0
+		two_count_o = 0
+		for num_o in list_o:
+			if 0 in num_o:
+				zero_count_o += 1
+		if zero_count_o == 3:
+			return "O"
+		for num_o in list_o:
+			if 1 in num_o:
+				one_count_o += 1
+		if one_count_o == 3:
+			return "O"
+		for num_o in list_o:
+			if 2 in num_o:
+				two_count_o += 1
+		if two_count_o == 3:
+			return "O"
+			#check in the diagonal
+		if (0 in list_o[0])and (1 in list_o[1]) and (2 in list_o[2]):
+			return "O"
+		if (2 in list_o[0]) and (1 in list_o[1]) and (0 in list_o[2]):
+			return "O"
+	if check_o(O_list) == "O":
+		return "O"
 
 print checkio([
-    "OOX",
-    "OXX",
-    "X.X"])
+    "OXO",
+    "XOX",
+    "OXO"])
