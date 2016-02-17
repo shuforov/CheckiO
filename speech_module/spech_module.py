@@ -9,12 +9,13 @@ def checkio(number_n):
                             19:"nineteen"}
         twenty_ninety ={20:"twenty", 30:"thirty", 40:"forty",50:"fifty",
                         60:"sixty", 70:"seventy", 80:"eighty" ,90:"ninety"}
-        hundred = "hundred"
+        hundred_one_space = " hundred"
+        hundred_two_space = " hundred "
         str_number = str(number_n)
         def one_number_size(one_number_n):
             if len(one_number_n) == 1:
                 for x in one_to_nine:
-                    if number_n == x:
+                    if int(one_number_n) == x:
                         return one_to_nine[x]
         def two_number_size(two_number_n):
             if len(two_number_n) == 2:
@@ -107,22 +108,18 @@ def checkio(number_n):
                             tempo_n += one_to_nine[x]
                     return tempo_n
         def three_number_size(three_number_n):
-            temp_number = ""
+            temp_n = ''
             if len(three_number_n) == 3:
-                z = three_number_n[0]
-                z1 = three_number_n[1:]
-                temp_number = one_number_size(z)
-                if (z1[0] == 0) and (z1[1] == 0):
-                    return temp_number + hundred
-                elif (three_number_n[1] == 0) and (three_number_n[2] > 0):
-                    return temp_number + hundred + one_number_size(three_number_n[2])
-                elif (three_number_n[1] > 0):
-                    return True
+                temp_n = three_number_n[1:]
+            if (int(temp_n[0]) == 0) and (int(temp_n[1]) == 0):
+                return one_number_size(three_number_n[0]) + hundred_one_space
+            elif (int(temp_n[0]) == 0) and (int(temp_n[1]) > 0):
+                return one_number_size(three_number_n[0]) + hundred_two_space + one_number_size(three_number_n[2])
 
         if len(str_number) == 1:
             return one_number_size(str_number)
-        if len(str_number) == 2:
+        elif len(str_number) == 2:
             return two_number_size(str_number)
-        if len(str_number) == 3:
+        elif len(str_number) == 3:
             return three_number_size(str_number)
-print checkio(100)
+print checkio(200)
