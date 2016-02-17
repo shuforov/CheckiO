@@ -111,10 +111,12 @@ def checkio(number_n):
             temp_n = ''
             if len(three_number_n) == 3:
                 temp_n = three_number_n[1:]
-            if (int(temp_n[0]) == 0) and (int(temp_n[1]) == 0):
-                return one_number_size(three_number_n[0]) + hundred_one_space
-            elif (int(temp_n[0]) == 0) and (int(temp_n[1]) > 0):
-                return one_number_size(three_number_n[0]) + hundred_two_space + one_number_size(three_number_n[2])
+                if (int(temp_n[0]) == 0) and (int(temp_n[1]) == 0):
+                    return one_number_size(three_number_n[0]) + hundred_one_space
+                elif (int(temp_n[0]) == 0) and (int(temp_n[1]) > 0):
+                    return one_number_size(three_number_n[0]) + hundred_two_space + one_number_size(three_number_n[2])
+                elif (int(temp_n[0]) > 0):
+                    return one_number_size(three_number_n[0]) + hundred_two_space + two_number_size(temp_n)
 
         if len(str_number) == 1:
             return one_number_size(str_number)
@@ -122,4 +124,4 @@ def checkio(number_n):
             return two_number_size(str_number)
         elif len(str_number) == 3:
             return three_number_size(str_number)
-print checkio(200)
+print checkio(662)
