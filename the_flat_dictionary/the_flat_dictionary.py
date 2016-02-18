@@ -46,17 +46,21 @@
 ##root_dictionary != {}
 
 def flatten(dict_n):
+    temp_dict = dict_n
+    new_dict = temp_dict
+##    print dict([(temp_key, temp_dict)])
+
+    while isinstance(new_dict,dict) == True:
+        temp_key = new_dict.keys()
+        temp_key = temp_key[0]
+        new_dict = new_dict.pop(temp_key)
+        print new_dict
 
 
 
-
-
-
-
-
-print flatten({"key": "value"})
+##print flatten({"key": "value"})
 print flatten({"key": {"deeper": {"more": {"enough": "value"}}}})
-print flatten({"empty": {}})
+##print flatten({"empty": {}})
 
 
 
