@@ -55,6 +55,8 @@ def flatten(dict_n):
         temp_key = temp_key[0]
         temp_list.append(temp_key)
         new_dict = new_dict.pop(temp_key)
+        if new_dict == {}:
+            break
 
     join_words = ''
     for x in temp_list:
@@ -66,7 +68,7 @@ def flatten(dict_n):
 
 print flatten({"key": "value"})
 print flatten({"key": {"deeper": {"more": {"enough": "value"}}}})
-##print flatten({"empty": {}})
+print flatten({"empty": {}})
 
 
 
