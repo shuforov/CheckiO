@@ -45,25 +45,19 @@
 ##Значения в словаре - строки или другие словари.
 ##root_dictionary != {}
 
-def flatten(dict_n):
-    temp_dict = dict_n
-    new_dict = temp_dict
-    temp_list = []
-
-    while isinstance(new_dict,dict) == True:
-        temp_key = new_dict.keys()
-        temp_key = temp_key[0]
-        temp_list.append(temp_key)
-        new_dict = new_dict.pop(temp_key)
-        if new_dict == {}:
-            break
-
-    join_words = ''
-    for x in temp_list:
-        join_words += x + '/'
-    join_words = join_words[:-1]
-    out_dict = dict([(join_words,new_dict)])
-    return out_dict
+def flatten(dictionary):
+    stack = [((), dictionary)]
+    result = {}
+    while stack:
+        path, current = stack.pop()
+        for k, v in current.items():
+            if v == {}:
+                result["/".join((path + (k,)))] = ""
+            elif isinstance(v, dict):
+                stack.append((path + (k,), v))
+            else:
+                result["/".join((path + (k,)))] = v
+    return result
 
 
 print flatten({"key": "value"})
