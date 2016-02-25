@@ -45,7 +45,6 @@
 ##Значения в словаре - строки или другие словари.
 ##root_dictionary != {}
 
-
 def flatten(dictionary):
     stack = [((), dictionary)]
     result = {}
@@ -64,7 +63,7 @@ def flatten(dictionary):
 print flatten({"key": "value"})
 print flatten({"key": {"deeper": {"more": {"enough": "value"}}}})
 print flatten({"empty": {}})
-print flatten({"key": {"deeper": {"more": {"enough": "value", "hh":22}}}})
+print flatten({"key": {"deeper": {"more": {"enough": "value", "hh":22},'ss':22}}})
 
 
 
