@@ -10,7 +10,27 @@ def safe_pawns(pawns):
                 temp_list.append(alp + str(num))
             board.append(temp_list)
     creat_board()
-    print board
+    board_bin = board
+    def create_bin_bord(elements):
+        elem = elements
+        count_one = 0
+        for x in board:
+            count = 0
+            for z in x:
+                if z in elem:
+                    board_bin[count_one][count] = 1
+                else:
+                    board_bin[count_one][count] = 0
+                count += 1
+            count_one += 1
+    create_bin_bord(pawns)
+    print board_bin
+
+
+    def check_save(elements):
+
+
+
 
 
 print safe_pawns({"b4", "d4", "f4", "c3", "e3", "g5", "d2"})
