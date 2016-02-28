@@ -24,16 +24,31 @@ def safe_pawns(pawns):
                 count += 1
             count_one += 1
     create_bin_bord(pawns)
-    print board_bin
+
+    def check_save():
+        count_safe = 0
+        list_temp = []
+        count_row = 0
+        for vol in board_bin:
+            count_1 = 0
+            for zx in vol:
+                if zx == 1:
+                    list_temp.append((count_row,count_1))
+                count_1 += 1
+            count_row += 1
+        for x in list_temp:
+            if ((x[0]+1,x[1]-1)in list_temp) or ((x[0]+1,x[1]+1) in list_temp):
+                count_safe += 1
+        return count_safe
+    return check_save()
 
 
-    def check_save(elements):
 
 
 
 
 
 print safe_pawns({"b4", "d4", "f4", "c3", "e3", "g5", "d2"})
-##print safe_pawns({"b4", "c4", "d4", "e4", "f4", "g4", "e5"})
+print safe_pawns({"b4", "c4", "d4", "e4", "f4", "g4", "e5"})
 ##print safe_pawns({"b4", "d4", "f4", "c3", "e3", "g5", "d2"}) == 6
 ##print safe_pawns({"b4", "c4", "d4", "e4", "f4", "g4", "e5"}) == 1
