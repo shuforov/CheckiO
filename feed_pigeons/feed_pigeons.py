@@ -14,9 +14,12 @@ def checkio(feed):
         if g <= feeds:
             feeds -= g
             count += 1
-
+        elif g > feeds:
+            h = feeds - 1
+            if h > 0:
+                count += h
+                pigens.append(feeds)
     return pigens[count]
-
 
 print checkio(1)
 print checkio(2)
