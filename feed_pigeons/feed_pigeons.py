@@ -14,6 +14,8 @@ def checkio(feed):
         if g <= feeds:
             feeds -= g
             count += 1
+        elif g > feeds:
+            count += g - feeds
 
     return pigens[count]
 
