@@ -1,39 +1,47 @@
 #http://www.checkio.org/mission/feed-pigeons/
 
-def checkio(feed):
+def checkio(number):
 
-    feeds = feed
-    pigens = []
-    good = 0
-    count = 0
-    #step by step minus
-    g = 0   #how mach need to dec from feeds [1,3,6...]
-    s = range(1,11) # list of pigens come avery minutes
-    for z in s:    #loop for calculate how much 
-        g += z #up the decrement from feed
-        if g <= feeds: # if dec low from feed thean feed need decrement -> feed - g 
+    feeds = number
+    feed_to_need = []
+    number_of_pigens_feed = 0
+    g = 0
+    s = ''
+    if number > 1:
+        s = range(1,number)
+    elif number <= 1:
+        s = range(1,11)
+    for z in s:
+        g += z
+        if g <= feeds:
             feeds -= g
-            pigens.append(g) # and up the number of feeded pigens
-            count += 1
-        elif (g > feeds) and (feeds > 0): # if decrementor biger thean feeds need too cheack how much can feed pigens left
-            h = feeds - (count-1)
-            z = h - count
-            x = (count - 1) + z
-            pigens.append(x)
-            bgd=0
-            for x in pigens:
-                bgd += x
-            good = bgd
-            return good
-    return pigens[count-1]                
+            number_of_pigens_feed += 1
+            feed_to_need.append(g)
+            if feeds == 0:
+                v = feed_to_need[-1:]
+                v = v.pop(0)
+                return v
+        if g > feeds:
+            v = feed_to_need[-1:]
+            v = v.pop(0)
+            h = feeds - v
+            if h < 0:
+                feed_to_need.append(g)
+                b = feed_to_need[-1:]
+                b = b.pop(0)
+                return b
+            if h > 0:
+                return v + h
 
 print 'one =>',checkio(1)
-print 'two =>',checkio(2)
-print 'three =>',checkio(3)
-print 'four =>',checkio(4)
-print 'five =>',checkio(5)
-print 'six =>',checkio(6)
-print 'seven =>',checkio(7)
-print 'eight =>',checkio(8)
-print 'nine =>',checkio(9)
-print 'ten =>',checkio(10)
+# print 'two =>',checkio(2)
+# print 'three =>',checkio(3)
+# print 'four =>',checkio(4)
+# print 'five =>',checkio(5)
+# print 'six =>',checkio(6)
+# print 'seven =>',checkio(7)
+# print 'eight =>',checkio(8)
+# print 'nine =>',checkio(9)
+# print 'teen =>',checkio(10)
+# print 'eighteen =>',checkio(18)
+print '10000 =>', checkio(10000)
