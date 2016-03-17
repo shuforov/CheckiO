@@ -46,25 +46,16 @@ def longest_palindromic(text):
         print z
     # #calculate how mach True in first matrix and put them in to list
     counter_m = 0
-
     lists_of_pal = []
-    while counter_m != len(text):
-        counter_t = 0
-        for x in matrix[counter_m]:
-            if x == 'T':
-                counter_t += 1
-        if counter_t > 1:
-            lists_s = []
-            z = counter_m
-            t = matrix[counter_m][matrix[counter_m].index(x)]
-            while t == 'T':
-                lists_s.append((z, matrix[z].index(x)))
-                t = matrix[z][matrix[z].index(x) - 1]
-                z += 1
-            lists_of_pal.append(lists_s)
-        elif counter_t == 1:
-            counter_t = 0
+    counter_for_loop = 0
+    for x in matrix:
+        counter_for_loop = 0
+        for s in x:
+            if s == 'T':
+                print s, counter_for_loop
+            counter_for_loop += 1
+        print '\n'
         counter_m += 1
-    print(lists_of_pal)
+    print lists_of_pal
 print longest_palindromic("artrartrt")
 # longest_palindromic("artrartrt") == "rtrartr"
