@@ -51,7 +51,7 @@ def longest_palindromic(text):
     for x in matrix:
         counter_for_loop = 0
         for s in x:
-            if s == 'T':
+            if s == 'T' and counter_for_loop > 1:
                 print s, counter_for_loop
             counter_for_loop += 1
         print '\n'
