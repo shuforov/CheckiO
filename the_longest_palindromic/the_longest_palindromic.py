@@ -55,12 +55,16 @@ def longest_palindromic(text):
                 z = counter_m
                 j = counter_for_loop
                 counter_for_size = 0
+                list_temp = []
                 while matrix[z][j] == 'T':
-                    print 'T',z,j
+                    # print 'T',z,j
                     z += 1
                     j = j - 1
                     counter_for_size += 1
-                print '--------'
+                    list_temp.append(('T',z,j))
+                # print '--------'
+                if counter_for_size > 2:
+                    print list_temp
                 # print s, counter_for_loop
             counter_for_loop += 1
         print '\n'
