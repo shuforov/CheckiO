@@ -43,7 +43,7 @@ def longest_palindromic(text):
         counter_h += 1
     for z in matrix:
         z.reverse()
-        print z
+        # print z
     # #calculate how mach True in first matrix and put them in to list
     counter_m = 0
     lists_of_pal = []
@@ -58,7 +58,7 @@ def longest_palindromic(text):
                 list_temp = []
                 while z < len(matrix) and matrix[z][j] == 'T':
                     # print 'T',z,j
-                    list_temp.append((z,j))
+                    list_temp.append(j)
                     z += 1
                     j = j - 1
                     counter_for_size += 1
@@ -70,10 +70,28 @@ def longest_palindromic(text):
             counter_for_loop += 1
         # print '\n'
         counter_m += 1
-    tempo_var = lists_of_pal[0]
-    for y in lists_of_pal:
-        if len(tempo_var) < len(y):
-            tempo_var = y
-    print tempo_var
+    #search for longest index palindromes in lists
+    if len(lists_of_pal) > 1:
+        tempo_var = lists_of_pal[0]
+        for y in lists_of_pal:
+            if len(tempo_var) < len(y):
+                tempo_var = y
+        for x in reversed(tempo_var[:-1]):
+            tempo_var.append(x)
+        # print ''
+        # print tempo_var
+        temp_lists = []
+        for x in tempo_var:
+            temp_lists.append(text[x])
+        return ''.join(temp_lists)
+    elif len(lists_of_pal) <= 0:
+        return text[0]
+
 print longest_palindromic("artrartrt")
-# longest_palindromic("artrartrt") == "rtrartr"
+print longest_palindromic("abacada")
+print longest_palindromic("aaaa")
+print longest_palindromic('abc')
+
+# longest_palindromic("artrartrt") == "rtrartr", "The Longest"
+# longest_palindromic("abacada") == "aba", "The First"
+# longest_palindromic("aaaa") == "aaaa", "The A"
