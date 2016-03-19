@@ -1,7 +1,23 @@
 # http://www.checkio.org/mission/ip-network-route-summarization/
 def checkio(data):
-    #replace this for solution
-    return ""
+    temp_list = []
+    for x in data:
+        tempo = []
+        for y in x:
+            while y != ".":
+                tempo.append(y)
+        temp_list.append(tempo)
+     binary_list = []
+     for x in temp_list:
+         tempo = []
+         for y in x:
+             while x.index(y) != x.index(x[-1:]):
+                 tempo.append(bin(y))
+         binary_list.append(temp)
+                
+      
+    
+print checkio(["172.16.12.0", "172.16.13.0", "172.16.14.0", "172.16.1e5.0"])
 
 #These "asserts" using only for self-checking and not necessary for auto-testing
 
