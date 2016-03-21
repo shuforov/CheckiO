@@ -14,7 +14,13 @@ def checkio(data):
              while x.index(y) != x.index(x[-1:]):
                  tempo.append(bin(y))
          binary_list.append(temp)
-                
+         new_bin_list = []
+         for x in binary_list:
+             tempo = []
+             for y in x:
+                 new_bin_list.append(y [2:])
+         print new_bin_list
+                        
       
     
 print checkio(["172.16.12.0", "172.16.13.0", "172.16.14.0", "172.16.1e5.0"])
