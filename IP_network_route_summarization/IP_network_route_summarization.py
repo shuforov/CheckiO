@@ -2,23 +2,27 @@
 
 
 def checkio(data):
-    int_num = range(0,256)
-    dict_match = {}
+    int_num = range(1,256)
+    dict_match = {'0':'0'*8}
     for z in int_num:
         dict_match[str(z)] = bin(z)[2:].zfill(8)
     tempo_list = []
     for x in data:
         tempo = ''
+        bin_num = ''
         for y in x:
-            if y in dict_match:
+            if y in dict_match and x.index(y) == len(x)-1:
+                tempo += y
+            elif y in dict_match:
                 tempo += y
             elif y == '.':
                 tempo += '.'
-                print dict_match[tempo[:-1]]+'.'
+                bin_num += dict_match[tempo[:-1]]+'.'
                 tempo = ''
-        print tempo
-
-print checkio(["172.16.12.0", "172.16.13.0"])
+        bin_num += dict_match[tempo]
+        tempo_list.append(bin_num)
+    print tempo_list
+print checkio(["172.16.12.11", "172.16.13.0", "172.16.14.0", "172.16.15.0"])
 
 #These "asserts" using only for self-checking and not necessary for auto-testing
 
