@@ -40,8 +40,8 @@ def min(*args, **kwargs):
 
 def max(*args, **kwargs):
     key = kwargs.get("key", None)
-    print type(args)
-    print kwargs
+    # print type(args)
+    # print kwargs
     if key == None:
         z = 0
         list_for_sort = []
@@ -63,6 +63,8 @@ def max(*args, **kwargs):
         list_return = [z,list_for_sort,string_v]
         return list_return[type_of_var][len(list_return[type_of_var]) - 1]
     elif key != None:
+        # print key
+        # print key(args[0])
         if isinstance(args[0],list):
             check_num = key(args[0][0])
             counter = 0
@@ -74,8 +76,16 @@ def max(*args, **kwargs):
                          the_max = counter
                      counter += 1
             return args[0][the_max]
+        elif isinstance(args[0],float):
+            check_num = key(args[0])
+            counter = 0
+            for x in args:
+                if key(x) > check_num:
+                    check_num = key(x)
+                    counter += 1
+            return args[counter]
 
-print max(4,1,5,6,2)
+print max(2.2,5.6,5.9, key=int)
 
 # print max(3, 2) == 3, "Simple case max"
 # print min(3, 2) == 2, "Simple case min"
