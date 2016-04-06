@@ -18,7 +18,6 @@ def most_frequent_days(year):
         list_temp = []
         for x in calendar.day_name:
             list_temp.append(x)
-        print list_temp
         #creating list with all days in month
         gg = calendar.monthcalendar(year, month_num)
         list_of_wholl_month = []
@@ -31,20 +30,16 @@ def most_frequent_days(year):
                 if z >= 1:
                     day_of_the_week[counter] += 1
                 counter += 1
-        print day_of_the_week
-        #simple output calendar
-        print v.formatmonth(year,month_num,w=0,l=0)
-        #sorting the most frequent day and return it
-        match = day_of_the_week[0]
-        counter_for_match = 0
-        bigest_counter = 0
-        for x in day_of_the_week:
-            if day_of_the_week[x] > match:
-                match = day_of_the_week[x]
-                bigest_counter = counter_for_match
-            counter_for_match += 1
-        return list_temp[bigest_counter]
 
+        #simple output calendar
+        # print v.formatmonth(year,month_num,w=0,l=0)
+        #sorting the most frequent day and return it
+    couple_day_list = []
+    sorted_val_of_dict = sorted(day_of_the_week.values())
+    for x in day_of_the_week:
+        if day_of_the_week[x] == sorted_val_of_dict[len(sorted_val_of_dict) - 1]:
+            couple_day_list.append(list_temp[x])
+    return couple_day_list
 
 print most_frequent_days(2399)
 
