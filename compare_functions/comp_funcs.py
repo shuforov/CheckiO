@@ -40,12 +40,11 @@ def checkio(f,g):
                 return f(*args),'same'
             elif f(*args) != g(*args) and (f_check == g_check):
                 return f(*args),'different'
-
         except:
             pass
     return h
 
-print checkio(lambda x,y:x+y,lambda x,y:(x**2-y**2)/(x-y))(1,1)
+print checkio(lambda x,y:x+y,lambda x,y:(x**2-y**2)/(x-y))(0,0)
 
 
 # if __name__ == '__main__':
