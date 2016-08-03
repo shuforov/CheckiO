@@ -37,19 +37,20 @@ def roman_numerals(number_lat):
     new_lat_num = str(number_lat)
     add_zero = '0' * len(new_lat_num)
     number_rom = ''
-    for temp in xrange(len(new_lat_num)):
-        if temp + 1 == len(new_lat_num):
-            if int(new_lat_num[temp]) == 0:
-                break
-            else:
+    if number_lat in roman_num:
+        return roman_num[number_lat]
+    else:
+        for temp in xrange(len(new_lat_num)):
+            if temp + 1 == len(new_lat_num):
                 number_rom += roman_num[int(new_lat_num[temp])]
-        elif temp < len(new_lat_num):
-            number_rom += roman_num[int(new_lat_num[temp] + add_zero[temp+1:])]
-    return number_rom
+            elif temp < len(new_lat_num):
+                number_rom += roman_num[int(
+                    new_lat_num[temp] + add_zero[temp+1:])]
+        return number_rom
 
 print roman_numerals(2)
 print roman_numerals(6)
 print roman_numerals(76)
 print roman_numerals(13)
-print roman_numerals(40)
+print roman_numerals(100)
 print roman_numerals(3999)
