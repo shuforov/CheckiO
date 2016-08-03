@@ -41,8 +41,12 @@ def roman_numerals(number_lat):
         return roman_num[number_lat]
     else:
         for temp in xrange(len(new_lat_num)):
-            if temp + 1 == len(new_lat_num):
+            if temp + 1 == len(new_lat_num) and int(
+                    new_lat_num[-1:] in roman_num):
                 number_rom += roman_num[int(new_lat_num[temp])]
+            elif temp + 1 == len(new_lat_num) and int(
+                    new_lat_num[-2:]) in roman_num:
+                number_rom += roman_num[int(new_lat_num[-2:])]
             elif temp < len(new_lat_num):
                 number_rom += roman_num[int(
                     new_lat_num[temp] + add_zero[temp+1:])]
@@ -52,5 +56,5 @@ print roman_numerals(2)
 print roman_numerals(6)
 print roman_numerals(76)
 print roman_numerals(13)
-print roman_numerals(100)
+print roman_numerals(3910)
 print roman_numerals(3999)
