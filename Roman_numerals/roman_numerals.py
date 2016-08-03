@@ -34,47 +34,18 @@ def roman_numerals(number_lat):
                  2000: 'MM',
                  3000: 'MMM',
                  3999: 'MMMCMXCIX'}
-    if number_lat < 9 and number_lat > 1:
-        for key in roman_num:
-            if key == number_lat:
-                return roman_num[key]
-    elif number_lat < 90 and number_lat > 9:
-        number_complite = ''
-        for key in roman_num:
-            if key == int(str(number_lat)[0] + '0'):
-                number_complite = roman_num[key]
-        for key in roman_num:
-            if key == int(str(number_lat)[1]):
-                number_complite += roman_num[key]
-        return number_complite
-    elif number_lat < 900 and number_lat > 90:
-        number_complite = ''
-        for key in roman_num:
-            if key == int(str(number_lat)[0] + '00'):
-                number_complite = roman_num[key]
-        for key in roman_num:
-            if key == int(str(number_lat)[1] + '0'):
-                number_complite += roman_num[key]
-        for key in roman_num:
-            if key == int(str(number_lat)[2]):
-                number_complite += roman_num[key]
-        return number_complite
-    elif number_lat <= 3999 and number_lat > 900:
-        number_complite = ''
-        for key in roman_num:
-            if key == int(str(number_lat)[0] + '000'):
-                number_complite = roman_num[key]
-        for key in roman_num:
-            if key == int(str(number_lat)[1] + '00'):
-                number_complite += roman_num[key]
-        for key in roman_num:
-            if key == int(str(number_lat)[2] + '0'):
-                number_complite += roman_num[key]
-        for key in roman_num:
-            if key == int(str(number_lat)[3]):
-                number_complite += roman_num[key]
-        return number_complite
-
+    new_lat_num = str(number_lat)
+    add_zero = '0' * len(new_lat_num)
+    number_rom = ''
+    for temp in xrange(len(new_lat_num)):
+        if temp + 1 == len(new_lat_num):
+            if int(new_lat_num[temp]) == 0:
+                break
+            else:
+                number_rom += roman_num[int(new_lat_num[temp])]
+        elif temp < len(new_lat_num):
+            number_rom += roman_num[int(new_lat_num[temp] + add_zero[temp+1:])]
+    return number_rom
 
 print roman_numerals(2)
 print roman_numerals(6)
