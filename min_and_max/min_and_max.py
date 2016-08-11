@@ -7,25 +7,32 @@ def calculate_min(*args, **kwargs):
     # print type(args)
     # print args
     if key is None:
-        temp = 0
-        list_for_sort = []
-        string_v = ''
-        type_of_var = 0
-        for argument in args:
-            if isinstance(argument, list):
-                temp = argument
-                temp = sorted(temp)
-                type_of_var = 0
-            elif isinstance(argument, int):
-                list_for_sort.append(argument)
-                list_for_sort = sorted(list_for_sort)
-                type_of_var = 1
-            elif isinstance(argument, str):
-                string_v += argument
-                string_v = ''.join(sorted(string_v))
-                type_of_var = 2
-        list_return = [temp, list_for_sort, string_v]
-        return list_return[type_of_var][0]
+        if isinstance (args[0], tuple):
+            sorted_list = [] 
+            for elemnt in args[0]:
+                sorted_list.append(elemnt)
+                sorted_list = sorted(sorted_list)
+            return sorted_list[0] 
+        else:
+            temp = 0
+            list_for_sort = []
+            string_v = ''
+            type_of_var = 0
+            for argument in args:
+                if isinstance(argument, list):
+                    temp = argument
+                    temp = sorted(temp)
+                    type_of_var = 0
+                elif isinstance(argument, int):
+                    list_for_sort.append(argument)
+                    list_for_sort = sorted(list_for_sort)
+                    type_of_var = 1
+                elif isinstance(argument, str):
+                    string_v += argument
+                    string_v = ''.join(sorted(string_v))
+                    type_of_var = 2
+            list_return = [temp, list_for_sort, string_v]
+            return list_return[type_of_var][0]
     elif key is not None:
         if isinstance(args[0], list):
             check_num = key(args[0][0])
@@ -99,3 +106,5 @@ print calculate_min("hello")
 print calculate_max(2.2, 5.6, 5.9, key=int)
 # [9, 0], "lambda key"
 print calculate_min([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1])
+# 9
+print calculate_min((9,))
