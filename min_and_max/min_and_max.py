@@ -1,95 +1,101 @@
-#http://www.checkio.org/mission/min-max/
+"""http://www.checkio.org/mission/min-max/"""
 
-def min(*args, **kwargs):
+
+def calculate_min(*args, **kwargs):
+    """min and maximum"""
     key = kwargs.get("key", None)
     print type(args)
     print kwargs
-    if key == None:
-        z = 0
+    if key is None:
+        temp = 0
         list_for_sort = []
         string_v = ''
         type_of_var = 0
-        for x in args:
-            if isinstance(x,list):
-                z = x
-                z = sorted(z)
+        for argument in args:
+            if isinstance(argument, list):
+                temp = argument
+                temp = sorted(temp)
                 type_of_var = 0
-            elif isinstance(x,int):
-                list_for_sort.append(x)
+            elif isinstance(argument, int):
+                list_for_sort.append(argument)
                 list_for_sort = sorted(list_for_sort)
                 type_of_var = 1
-            elif isinstance(x,str):
-                string_v += x
+            elif isinstance(argument, str):
+                string_v += argument
                 string_v = ''.join(sorted(string_v))
                 type_of_var = 2
-        list_return = [z,list_for_sort,string_v]
+        list_return = [temp, list_for_sort, string_v]
         return list_return[type_of_var][0]
-    elif key != None:
-        if isinstance(args[0],list):
+    elif key is not None:
+        if isinstance(args[0], list):
             check_num = key(args[0][0])
             counter = 0
             the_min = 0
-            for z in args:
-                for x in z:
-                     if key(x) < check_num:
-                         check_num = key(x)
-                         the_min = counter
-                     counter += 1
+            for temp in args:
+                for argument in temp:
+                    if key(argument) < check_num:
+                        check_num = key(argument)
+                        the_min = counter
+                        counter += 1
             return args[0][the_min]
 
 
-def max(*args, **kwargs):
+def calculate_max(*args, **kwargs):
+    """calculate maximum"""
     key = kwargs.get("key", None)
     # print type(args)
     # print kwargs
-    if key == None:
-        z = 0
+    if key is None:
+        temp = 0
         list_for_sort = []
         string_v = ''
         type_of_var = 0
-        for x in args:
-            if isinstance(x,list):
-                z = x
-                z = sorted(z)
+        for argument in args:
+            if isinstance(argument, list):
+                temp = argument
+                temp = sorted(temp)
                 type_of_var = 0
-            elif isinstance(x,int):
-                list_for_sort.append(x)
+            elif isinstance(argument, int):
+                list_for_sort.append(argument)
                 list_for_sort = sorted(list_for_sort)
                 type_of_var = 1
-            elif isinstance(x,str):
-                string_v += x
+            elif isinstance(argument, str):
+                string_v += argument
                 string_v = ''.join(sorted(string_v))
                 type_of_var = 2
-        list_return = [z,list_for_sort,string_v]
+        list_return = [temp, list_for_sort, string_v]
         return list_return[type_of_var][len(list_return[type_of_var]) - 1]
-    elif key != None:
+    elif key is not None:
         # print key
         # print key(args[0])
-        if isinstance(args[0],list):
+        if isinstance(args[0], list):
             check_num = key(args[0][0])
             counter = 0
             the_max = 0
-            for z in args:
-                for x in z:
-                     if key(x) > check_num:
-                         check_num = key(x)
-                         the_max = counter
-                     counter += 1
+            for temp in args:
+                for argument in temp:
+                    if key(argument) > check_num:
+                        check_num = key(argument)
+                        the_max = counter
+                        counter += 1
             return args[0][the_max]
-        elif isinstance(args[0],float):
+        elif isinstance(args[0], float):
             check_num = key(args[0])
             counter = 0
-            for x in args:
-                if key(x) > check_num:
-                    check_num = key(x)
+            for argumentx in args:
+                if key(argumentx) > check_num:
+                    check_num = key(argumentx)
                     counter += 1
             return args[counter]
-
-print max(2.2,5.6,5.9, key=int)
-
-# print max(3, 2) == 3, "Simple case max"
-# print min(3, 2) == 2, "Simple case min"
-# print max([1, 2, 0, 3, 4]) == 4, "From a list"
-# print min("hello") == "e", "From string"
-# print max(2.2, 5.6, 5.9, key=int) == 5.6, "Two maximal items"
-# print min([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1]) == [9, 0], "lambda key"
+# 3, "Simple case max"
+print max(3, 2)
+# = 2, "Simple case min"
+print min(3, 2)
+# = 4, "From a list"
+print max([1, 2, 0, 3, 4])
+# = "e", "From string"
+print min("hello")
+# = 5.6, "Two maximal items"
+print max(2.2, 5.6, 5.9, key=int)
+# [9, 0], "lambda key"
+print min([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1])
