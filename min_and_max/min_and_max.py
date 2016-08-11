@@ -4,8 +4,8 @@
 def calculate_min(*args, **kwargs):
     """min and maximum"""
     key = kwargs.get("key", None)
-    print type(args)
-    print kwargs
+    # print type(args)
+    # print args
     if key is None:
         temp = 0
         list_for_sort = []
@@ -36,7 +36,7 @@ def calculate_min(*args, **kwargs):
                     if key(argument) < check_num:
                         check_num = key(argument)
                         the_min = counter
-                        counter += 1
+                    counter += 1
             return args[0][the_min]
 
 
@@ -88,14 +88,14 @@ def calculate_max(*args, **kwargs):
                     counter += 1
             return args[counter]
 # 3, "Simple case max"
-print max(3, 2)
+print calculate_max(3, 2)
 # = 2, "Simple case min"
-print min(3, 2)
+print calculate_min(3, 2)
 # = 4, "From a list"
-print max([1, 2, 0, 3, 4])
+print calculate_max([1, 2, 0, 3, 4])
 # = "e", "From string"
-print min("hello")
+print calculate_min("hello")
 # = 5.6, "Two maximal items"
-print max(2.2, 5.6, 5.9, key=int)
+print calculate_max(2.2, 5.6, 5.9, key=int)
 # [9, 0], "lambda key"
-print min([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1])
+print calculate_min([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1])
