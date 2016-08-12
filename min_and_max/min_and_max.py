@@ -6,14 +6,16 @@ def calculate_min(*args, **kwargs):
     key = kwargs.get("key", None)
     # print type(args)
     # print args
+    # print type(args)
+    # print list(args)
     if key is None:
-        if isinstance (args[0], tuple):
-            sorted_list = [] 
+        if isinstance(args[0], tuple):
+            sorted_list = []
             for elemnt in args[0]:
                 sorted_list.append(elemnt)
                 sorted_list = sorted(sorted_list)
-            return sorted_list[0] 
-        else:
+            return sorted_list[0]
+        elif isinstance(args[0], (list, int, str)):
             temp = 0
             list_for_sort = []
             string_v = ''
@@ -33,6 +35,16 @@ def calculate_min(*args, **kwargs):
                     type_of_var = 2
             list_return = [temp, list_for_sort, string_v]
             return list_return[type_of_var][0]
+        # need fix elif to check if is generator!!
+        elif True: 
+            min_generator_number = next(args[0])
+            while True:
+                try:
+                    if next(args[0]) < min_generator_number:
+                        min_generator_number = next(args[0])
+                except StopIteration:
+                    return min_generator_number
+
     elif key is not None:
         if isinstance(args[0], list):
             check_num = key(args[0][0])
@@ -108,3 +120,5 @@ print calculate_max(2.2, 5.6, 5.9, key=int)
 print calculate_min([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1])
 # 9
 print calculate_min((9,))
+# ???!?!??!!?!?
+print calculate_min(abs(i) for i in range(-10, 10))
