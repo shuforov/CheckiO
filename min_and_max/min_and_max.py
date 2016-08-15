@@ -15,6 +15,14 @@ def calculate_min(*args, **kwargs):
                 sorted_list.append(elemnt)
                 sorted_list = sorted(sorted_list)
             return sorted_list[0]
+        elif isinstance(args[0], set):
+            sort_num = []
+            while True:
+                try:
+                    sort_num.append(args[0].pop())
+                    sort_num = sorted(sort_num)
+                except KeyError:
+                    return sort_num[0]
         elif isinstance(args[0], (list, int, str)):
             temp = 0
             list_for_sort = []
@@ -35,7 +43,6 @@ def calculate_min(*args, **kwargs):
                     type_of_var = 2
             list_return = [temp, list_for_sort, string_v]
             return list_return[type_of_var][0]
-        # need fix elif to check if is generator!!
         elif isinstance(args, tuple):
             min_generator_number = next(args[0])
             while True:
@@ -133,3 +140,5 @@ print calculate_min((9,))
 print calculate_min(abs(i) for i in range(-10, 10))
 # max test with generators
 print calculate_max(x + 5 for x in range(6))
+# min tuple
+print calculate_min({1, 2, 3, 4, -10})
