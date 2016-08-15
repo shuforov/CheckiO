@@ -36,7 +36,7 @@ def calculate_min(*args, **kwargs):
             list_return = [temp, list_for_sort, string_v]
             return list_return[type_of_var][0]
         # need fix elif to check if is generator!!
-        elif True: 
+        elif isinstance(args, tuple):
             min_generator_number = next(args[0])
             while True:
                 try:
@@ -44,7 +44,6 @@ def calculate_min(*args, **kwargs):
                         min_generator_number = next(args[0])
                 except StopIteration:
                     return min_generator_number
-
     elif key is not None:
         if isinstance(args[0], list):
             check_num = key(args[0][0])
@@ -65,25 +64,35 @@ def calculate_max(*args, **kwargs):
     # print type(args)
     # print kwargs
     if key is None:
-        temp = 0
-        list_for_sort = []
-        string_v = ''
-        type_of_var = 0
-        for argument in args:
-            if isinstance(argument, list):
-                temp = argument
-                temp = sorted(temp)
-                type_of_var = 0
-            elif isinstance(argument, int):
-                list_for_sort.append(argument)
-                list_for_sort = sorted(list_for_sort)
-                type_of_var = 1
-            elif isinstance(argument, str):
-                string_v += argument
-                string_v = ''.join(sorted(string_v))
-                type_of_var = 2
-        list_return = [temp, list_for_sort, string_v]
-        return list_return[type_of_var][len(list_return[type_of_var]) - 1]
+        if isinstance(args[0], (list, int, str)):
+            temp = 0
+            list_for_sort = []
+            string_v = ''
+            type_of_var = 0
+            for argument in args:
+                if isinstance(argument, list):
+                    temp = argument
+                    temp = sorted(temp)
+                    type_of_var = 0
+                elif isinstance(argument, int):
+                    list_for_sort.append(argument)
+                    list_for_sort = sorted(list_for_sort)
+                    type_of_var = 1
+                elif isinstance(argument, str):
+                    string_v += argument
+                    string_v = ''.join(sorted(string_v))
+                    type_of_var = 2
+            list_return = [temp, list_for_sort, string_v]
+            return list_return[type_of_var][len(list_return[type_of_var]) - 1]
+        elif isinstance(args, tuple):
+            next(args[0])
+            max_generator_number = next(args[0])
+            while True:
+                try:
+                    if max_generator_number < next(args[0]):
+                        max_generator_number = next(args[0])
+                except StopIteration:
+                    return max_generator_number
     elif key is not None:
         # print key
         # print key(args[0])
@@ -120,5 +129,7 @@ print calculate_max(2.2, 5.6, 5.9, key=int)
 print calculate_min([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1])
 # 9
 print calculate_min((9,))
-# ???!?!??!!?!?
+# test min generator
 print calculate_min(abs(i) for i in range(-10, 10))
+# max test with generators
+print calculate_max(x + 5 for x in range(6))
