@@ -91,6 +91,14 @@ def calculate_max(*args, **kwargs):
                     type_of_var = 2
             list_return = [temp, list_for_sort, string_v]
             return list_return[type_of_var][len(list_return[type_of_var]) - 1]
+        elif isinstance(args[0], set):
+            list_for_sort = []
+            while True:
+                try:
+                    list_for_sort.append(args[0].pop())
+                    list_for_sort = sorted(list_for_sort)
+                except KeyError:
+                    return list_for_sort[len(list_for_sort)-1] 
         elif isinstance(args, tuple):
             next(args[0])
             max_generator_number = next(args[0])
@@ -142,3 +150,5 @@ print calculate_min(abs(i) for i in range(-10, 10))
 print calculate_max(x + 5 for x in range(6))
 # min tuple
 print calculate_min({1, 2, 3, 4, -10})
+# max set(str)
+print calculate_max(set('djsaljldsklfjzx'))
