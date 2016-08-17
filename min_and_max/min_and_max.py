@@ -53,6 +53,20 @@ def calculate_min(*args, **kwargs):
                     return min_generator_number
     elif key is not None:
         key = kwargs.get("key", None)
+        try:
+            if isinstance(args[0], list):
+                check_num = key(args[0][0])
+                counter = 0
+                the_min = 0
+                for temp in args:
+                    for argument in temp:
+                        if key(argument) < check_num:
+                            check_num = key(argument)
+                            the_min = counter
+                        counter += 1
+                return args[0][the_min]
+        except TypeError:
+            pass
         if isinstance(args, tuple):
             counter = 1
             bigest_num = key(args[0])
@@ -63,17 +77,7 @@ def calculate_min(*args, **kwargs):
                 except IndexError:
                     return bigest_num
                 counter += 1
-        elif isinstance(args[0], list):
-            check_num = key(args[0][0])
-            counter = 0
-            the_min = 0
-            for temp in args:
-                for argument in temp:
-                    if key(argument) < check_num:
-                        check_num = key(argument)
-                        the_min = counter
-                    counter += 1
-            return args[0][the_min]
+
 
 
 def calculate_max(*args, **kwargs):
