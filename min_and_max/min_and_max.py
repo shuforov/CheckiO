@@ -70,12 +70,13 @@ def calculate_min(*args, **kwargs):
         if isinstance(args, tuple):
             counter = 1
             bigest_num = key(args[0])
+            bigest_list = args[0]
             while True:
                 try:
                     if bigest_num > key(args[counter]):
-                        bigest_num = key(args[counter])
+                        bigest_list = args[counter]
                 except IndexError:
-                    return bigest_num
+                    return bigest_list
                 counter += 1
 
 
