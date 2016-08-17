@@ -71,7 +71,20 @@ def calculate_max(*args, **kwargs):
     # print type(args)
     # print kwargs
     if key is None:
-        if isinstance(args[0], (list, int, str)):
+        if isinstance(args, tuple)and isinstance(args[0], list):
+            counter = 1
+            try:
+                bigest_num = sorted(args[0])
+                while True:
+                    try:
+                        if bigest_num[0:] < sorted(args[counter])[0:]:
+                            bigest_num = sorted(args[counter])
+                    except IndexError:
+                        return bigest_num
+                    counter += 1
+            except TypeError:
+                pass
+        elif isinstance(args[0], (list, int, str)):
             temp = 0
             list_for_sort = []
             string_v = ''
@@ -152,3 +165,5 @@ print calculate_max(x + 5 for x in range(6))
 print calculate_min({1, 2, 3, 4, -10})
 # max set(str)
 print calculate_max(set('djsaljldsklfjzx'))
+# max tuple of lists
+print calculate_max([1, 2, 3,], [5, 6], [7], [0, 0, 0, 1])
