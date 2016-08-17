@@ -52,7 +52,18 @@ def calculate_min(*args, **kwargs):
                 except StopIteration:
                     return min_generator_number
     elif key is not None:
-        if isinstance(args[0], list):
+        key = kwargs.get("key", None)
+        if isinstance(args, tuple):
+            counter = 1
+            bigest_num = key(args[0])
+            while True:
+                try:
+                    if bigest_num > key(args[counter]):
+                        bigest_num = key(args[counter])
+                except IndexError:
+                    return bigest_num
+                counter += 1
+        elif isinstance(args[0], list):
             check_num = key(args[0][0])
             counter = 0
             the_min = 0
@@ -167,3 +178,5 @@ print calculate_min({1, 2, 3, 4, -10})
 print calculate_max(set('djsaljldsklfjzx'))
 # max tuple of lists
 print calculate_max([1, 2, 3,], [5, 6], [7], [0, 0, 0, 1])
+# min sum in list
+print calculate_min([1, 2, 3], [5, 6], [7], [0, 0, 0, 10], key=sum)
