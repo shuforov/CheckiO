@@ -71,7 +71,7 @@ def calculate_max(*args, **kwargs):
     # print type(args)
     # print kwargs
     if key is None:
-        if isinstance(args, tuple)and isinstance(args[0], list):
+        if isinstance(args, tuple) and len(args) > 2:
             counter = 1
             try:
                 bigest_num = sorted(args[0])
