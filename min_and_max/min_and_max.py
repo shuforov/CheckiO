@@ -185,3 +185,5 @@ print calculate_max(set('djsaljldsklfjzx'))
 print calculate_max([1, 2, 3,], [5, 6], [7], [0, 0, 0, 1])
 # min sum in list
 print calculate_min([1, 2, 3], [5, 6], [7], [0, 0, 0, 10], key=sum)
+# max logic
+print calculate_max(True, False, -1, key=lambda x: not x)
